@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
 
 interface AnimatedSectionProps {
@@ -19,7 +19,7 @@ export function AnimatedSection({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === "up" ? 28 : 0,
@@ -32,7 +32,7 @@ export function AnimatedSection({
       transition: {
         duration: 0.65,
         delay,
-        ease: [0.16, 1, 0.3, 1],
+        ease: "easeOut",
       },
     },
   };
