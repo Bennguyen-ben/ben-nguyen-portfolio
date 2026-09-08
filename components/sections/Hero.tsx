@@ -127,7 +127,7 @@ export function Hero() {
               </svg>
             </a>
             <a
-              href="/documents/Ben-Nguyen-Resume.pdf"
+              href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
               className="btn-secondary"
               target="_blank"
               rel="noopener noreferrer"

@@ -1,4 +1,5 @@
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import Image from "next/image";
 
 interface JobEntry {
   role: string;
@@ -12,8 +13,8 @@ interface JobEntry {
 const experiences: JobEntry[] = [
   {
     role: "Video Editor & Content Creator",
-    company: "Digital Newspaper [Ben to confirm newspaper name]",
-    location: "Remote / Melbourne, Australia",
+    company: "Mekong ASEAN",
+    // location removed
     dates: "September 2025 – Present",
     description:
       "Responsible for producing high-quality short-form video reports across key social channels under strict newsroom deadlines.",
@@ -89,14 +90,18 @@ export function Experience() {
                   <h3 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-1">
                     {job.role}
                   </h3>
-                  <p className="text-[var(--color-accent)] font-medium">
-                    {job.company}
+                  <p className="text-[var(--color-accent)] font-medium flex items-center gap-3">
+                    <span>{job.company}</span>
+                    {job.company === "Mekong ASEAN" && (
+                      <Image
+                        src="/images/mekong-asean-logo.png"
+                        alt="Mekong ASEAN logo"
+                        width={110}
+                        height={34}
+                        className="h-7 w-auto object-contain inline-block"
+                      />
+                    )}
                   </p>
-                  {job.location && (
-                    <p className="text-xs text-[var(--color-muted)] mt-1">
-                      {job.location}
-                    </p>
-                  )}
                 </div>
                 <div className="text-sm font-medium text-[var(--color-muted)] md:text-right shrink-0">
                   {job.dates}

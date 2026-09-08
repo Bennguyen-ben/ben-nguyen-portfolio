@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 /**
@@ -17,7 +16,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 const EMAIL = "bennguyen112007@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/haminhnguyenkhac";
-const WEBSITE = "bennguyen.com";
+const WEBSITE = "ben-nguyen-portfolio.vercel.app";
 
 const contactLinks = [
   {
@@ -59,7 +58,7 @@ const contactLinks = [
   {
     label: "Resume",
     value: "Download CV",
-    href: "/documents/Ben-Nguyen-Resume.pdf",
+    href: "/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf",
     download: true,
     icon: (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -70,29 +69,7 @@ const contactLinks = [
   },
 ];
 
-type FormStatus = "idle" | "sending" | "success" | "error";
-
 export function Contact() {
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("sending");
-
-    // mailto fallback — opens email client
-    // To integrate Formspree, replace the form action attribute and remove this handler
-    const mailtoLink = `mailto:${EMAIL}?subject=Portfolio Enquiry from ${formData.name}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
-    setStatus("idle");
-  }
-
   return (
     <section
       id="contact"
@@ -158,110 +135,7 @@ export function Contact() {
             </AnimatedSection>
           </div>
 
-          {/* Contact form */}
-          <AnimatedSection delay={0.12} className="lg:col-span-7">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-8 md:p-10 shadow-[var(--shadow-soft)]"
-              aria-label="Contact form"
-              noValidate
-            >
-              {/* To integrate Formspree, add: action="https://formspree.io/f/YOUR_ID" method="POST" */}
-              <div className="space-y-5">
-                <div>
-                  <label
-                    htmlFor="contact-name"
-                    className="block text-sm font-medium text-[var(--color-fg)] mb-2"
-                  >
-                    Name
-                  </label>
-                  <input
-                    id="contact-name"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    className="form-input"
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="contact-email"
-                    className="block text-sm font-medium text-[var(--color-fg)] mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    className="form-input"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="contact-message"
-                    className="block text-sm font-medium text-[var(--color-fg)] mb-2"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    required
-                    rows={5}
-                    className="form-input resize-none"
-                    placeholder="Tell me about the opportunity..."
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
-                  aria-label="Send message"
-                >
-                  {status === "sending" ? "Opening email..." : "Send Message"}
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M2 8H14M14 8L10 4M14 8L10 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-
-                {status === "success" && (
-                  <p role="status" className="text-sm text-emerald-600 font-medium text-center">
-                    Message sent successfully!
-                  </p>
-                )}
-                {status === "error" && (
-                  <p role="alert" className="text-sm text-red-600 font-medium text-center">
-                    Something went wrong. Please try emailing directly.
-                  </p>
-                )}
-              </div>
-
-              <p className="text-xs text-[var(--color-muted-light)] mt-5 text-center">
-                Form submits via your email client. For server-side sending, integrate Formspree.
-              </p>
-            </form>
-          </AnimatedSection>
+          
         </div>
       </div>
     </section>

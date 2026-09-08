@@ -44,10 +44,10 @@ function VideoPlaceholder({ title, role, platform, description, src, embedUrl, t
   thumbnail?: string;
 }) {
   return (
-    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-soft)] flex flex-col h-full">
-      <div className="relative aspect-video bg-black flex items-center justify-center">
+    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-soft)] flex flex-col h-full w-full max-w-[340px] mx-auto">
+      <div className="relative aspect-[9/16] bg-neutral-950 flex items-center justify-center overflow-hidden">
         {src ? (
-          <video controls preload="metadata" className="w-full h-full object-cover" poster={thumbnail}>
+          <video controls preload="metadata" playsInline className="w-full h-full object-cover" poster={thumbnail}>
             <source src={src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -72,10 +72,10 @@ function VideoPlaceholder({ title, role, platform, description, src, embedUrl, t
       </div>
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
-          <h4 className="text-sm font-semibold text-[var(--color-fg)] mb-1">{title}</h4>
-          {role && <p className="text-xs text-[var(--color-muted)] mb-1"><span className="font-medium text-[var(--color-fg)]">Role:</span> {role}</p>}
-          {platform && <p className="text-xs text-[var(--color-muted)] mb-2"><span className="font-medium text-[var(--color-fg)]">Platform:</span> {platform}</p>}
-          {description && <p className="text-xs text-[var(--color-muted-light)] mt-1">{description}</p>}
+          <h4 className="text-sm font-semibold text-[var(--color-fg)] mb-1.5 leading-snug">{title}</h4>
+          {role && <p className="text-xs text-[var(--color-muted)] mb-1"><span className="font-semibold text-[var(--color-fg)]">Role:</span> {role}</p>}
+          {platform && <p className="text-xs text-[var(--color-muted)] mb-2"><span className="font-semibold text-[var(--color-fg)]">Platform:</span> {platform}</p>}
+          {description && <p className="text-xs text-[var(--color-muted-light)] leading-relaxed mt-2">{description}</p>}
         </div>
       </div>
     </div>
@@ -94,32 +94,32 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
   return (
     <>
       {/* Back link */}
-      <div className="container-site pt-28 pb-6">
+      <div className="container-site pt-28 sm:pt-32 pb-6 relative z-10">
         <Link
           href="/#work"
-          className="btn-ghost text-sm"
+          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors py-2 px-3 rounded-lg hover:bg-[var(--color-surface)] border border-transparent hover:border-[var(--color-border)]"
           aria-label="Back to all work"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           All Work
         </Link>
       </div>
 
       {/* Hero */}
-      <header className="container-site pb-16">
+      <header className="container-site pb-14 relative z-10">
         <AnimatedSection>
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="project-number bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 rounded-full">
-              {project.number}
-            </span>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6">
+            <span className="font-bold text-sm tracking-wide text-[var(--color-fg)]">BEN NGUYEN</span>
+            <span className="text-[var(--color-border)] select-none" aria-hidden="true">•</span>
             {project.projectLabel && (
-              <span className="text-xs font-medium bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 rounded-full text-[var(--color-muted)]">
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                 {project.projectLabel}
               </span>
             )}
-            <span className="text-xs text-[var(--color-muted-light)]">{project.year}</span>
+            <span className="text-[var(--color-border)] select-none" aria-hidden="true">•</span>
+            <span className="text-xs font-medium text-[var(--color-muted)]">{project.year}</span>
           </div>
         </AnimatedSection>
 
@@ -274,6 +274,42 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
               </AnimatedSection>
             )}
 
+            {/* Project Files */}
+            {cs?.projectFiles && cs.projectFiles.length > 0 && (
+              <AnimatedSection delay={0.2} className="mb-12">
+                <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 sm:p-8 shadow-[var(--shadow-soft)]">
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true" />
+                    <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight">
+                      Project Files
+                    </h2>
+                  </div>
+                  <p className="text-sm text-[var(--color-muted)] mb-6">
+                    Download and view the original project deliverables and documentation:
+                  </p>
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-3.5">
+                    {cs.projectFiles.map((file, i) => (
+                      <a
+                        key={i}
+                        href={file.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                        className="btn-primary inline-flex items-center justify-center gap-2.5 py-3 px-5 text-sm font-medium"
+                      >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                          <polyline points="7 10 12 15 17 10" />
+                          <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        <span>{file.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            )}
+
             {/* Measurement */}
             {cs?.measurement && cs.measurement.length > 0 && (
               <AnimatedSection delay={0.22} className="mb-12">
@@ -299,7 +335,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
                   Video Work
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
                   {project.videos.map((video) => (
                     <VideoPlaceholder
                       key={video.title}
@@ -313,6 +349,24 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                     />
                   ))}
                 </div>
+                {/* TikTok button for content-portfolio project */}
+                {project.slug === "content-portfolio" && (
+                  <div className="mt-8 text-center sm:text-left">
+                    <a
+                      href="https://www.tiktok.com/@kinhtevietnam_asean"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 btn-primary"
+                    >
+                      <span>Watch on TikTok</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
               </AnimatedSection>
             )}
 

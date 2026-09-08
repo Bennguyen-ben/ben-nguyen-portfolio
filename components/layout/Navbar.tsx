@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -15,6 +16,8 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -37,8 +40,8 @@ export function Navbar() {
       <header
         role="banner"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/90 backdrop-blur-md border-b border-[var(--color-border)] py-3 shadow-[0_1px_12px_0_rgba(0,0,0,0.06)]"
+          scrolled || !isHome
+            ? "bg-white/95 backdrop-blur-md border-b border-[var(--color-border)] py-3 shadow-[0_1px_12px_0_rgba(0,0,0,0.06)]"
             : "bg-transparent py-6"
         }`}
       >
@@ -57,23 +60,26 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <ul className="hidden md:flex items-center gap-7" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const targetHref = isHome ? link.href : `/${link.href}`;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={targetHref}
+                    className="nav-link"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="/documents/Ben-Nguyen-Resume.pdf"
+              href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
               className="btn-secondary text-sm py-2.5 px-5"
               target="_blank"
               rel="noopener noreferrer"
@@ -135,24 +141,30 @@ export function Navbar() {
             </div>
 
             <nav className="container-site flex-1 flex flex-col justify-center gap-2" aria-label="Mobile navigation">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.4 }}
-                  className="text-3xl font-semibold text-[var(--color-fg)] py-3 border-b border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors tracking-tight"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((link, i) => {
+                const targetHref = isHome ? link.href : `/${link.href}`;
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.4 }}
+                  >
+                    <Link
+                      href={targetHref}
+                      className="block text-3xl font-semibold text-[var(--color-fg)] py-3 border-b border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors tracking-tight"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </nav>
 
             <div className="container-site py-8">
               <a
-                href="/documents/Ben-Nguyen-Resume.pdf"
+                href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
                 className="btn-primary w-full justify-center"
                 target="_blank"
                 rel="noopener noreferrer"

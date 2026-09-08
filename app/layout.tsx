@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const baseUrl = "https://ben-nguyen-portfolio.vercel.app";
+
 export const metadata: Metadata = {
   title: "Ben Nguyen | Digital Marketing & Content Portfolio",
   description:
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AU",
-    url: "https://bennguyen.com.au",
+    url: baseUrl,
     siteName: "Ben Nguyen Portfolio",
     title: "Ben Nguyen | Digital Marketing & Content Portfolio",
     description:

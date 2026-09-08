@@ -36,6 +36,7 @@ export interface ProjectVideo {
   platform?: string;
   description?: string;
   tools?: string[];
+  tiktokUrl?: string;
 }
 
 export interface CaseStudySection {
@@ -74,6 +75,7 @@ export interface Project {
     measurement?: CaseStudySection[];
     reflection?: string;
     skills?: string[];
+    projectFiles?: { label: string; href: string }[];
   };
 }
 
@@ -99,6 +101,10 @@ export const projects: Project[] = [
     projectLabel: "Academic Strategy Project",
     previewImage: "/images/projects/nac/preview.png",
     caseStudy: {
+      projectFiles: [
+        { label: "View / Download Social Media Audit", href: "/documents/Ben-Nguyen-ALM216-Social-Media-Audit.pdf" },
+        { label: "View / Download Social Media Strategy", href: "/documents/Ben-Nguyen-ALM216-Social-Media-Strategy.pdf" }
+      ],
       context:
         "Nature Advocates Collective (NAC) is a national environmental organisation dedicated to protecting and regenerating Australia's nature. This strategy project analyzed observed platform metrics and designed content recommendations to bridge the gap between user engagement and environmental advocacy.",
       challenge:
@@ -217,7 +223,7 @@ export const projects: Project[] = [
       "A curation of professional short-form news and entertainment videos edited for digital social platforms.",
     description:
       "Contains real examples of short-form content produced during employment as a Video Editor & Content Creator for a digital newspaper. The videos target high-retention formats on Facebook, TikTok, and YouTube Shorts.",
-    role: "Video Editor & Content Creator [Ben to confirm/review details]",
+    role: "Video Editor & Content Creator",
     tools: ["CapCut", "DaVinci Resolve"],
     platforms: ["Facebook", "TikTok", "YouTube"],
     featured: true,
@@ -228,7 +234,7 @@ export const projects: Project[] = [
     videos: [
       {
         title: "VinFast Business News Report",
-        role: "Video Editor [Ben to confirm/review details]",
+        role: "Video Editor & Content Creator",
         platform: "Facebook & TikTok",
         description:
           "Edited a short-form business news video analyzing VinFast's market trends. Focused on incorporating clean typography, fast-paced transitions, and descriptive captions for high silent-play retention.",
@@ -237,7 +243,7 @@ export const projects: Project[] = [
       },
       {
         title: "Anh Trai Entertainment Trend Report",
-        role: "Video Editor [Ben to confirm/review details]",
+        role: "Video Editor & Content Creator",
         platform: "Facebook & TikTok",
         description:
           "Edited an entertainment segment detailing trending topics from the popular 'Anh Trai' series. Developed high-tempo visual loops, custom text overlays, and sound design to sustain viewer interest.",
@@ -309,6 +315,9 @@ export const projects: Project[] = [
     projectLabel: "Academic Marketing Project",
     previewImage: "/images/projects/lilys/preview.png",
     caseStudy: {
+      projectFiles: [
+        { label: "View / Download Full Marketing Strategy", href: "/documents/Ben-Nguyen-MMK101-Lilys-Little-Lunchboxes-Marketing-Strategy.pdf" }
+      ],
       context:
         "Lily's Little Lunchboxes is an established Brisbane meal-delivery business offering dietitian-approved, fresh ready-meals. Traditionally targeting families, kids, and seniors, this project evaluated the feasibility of expanding into the university student segment.",
       challenge:

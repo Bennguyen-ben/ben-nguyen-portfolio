@@ -63,9 +63,8 @@ export function Footer() {
               Email
             </a>
             <a
-              href="/documents/Ben-Nguyen-Resume.pdf"
-              className="text-sm text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
-              download="Ben-Nguyen-Resume.pdf"
+              href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
+              download="Ben-Nguyen-Digital-Marketing-Resume.pdf"
               aria-label="Download resume"
             >
               Resume

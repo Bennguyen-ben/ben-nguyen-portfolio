@@ -33,7 +33,7 @@ export function About() {
             <AnimatedSection delay={0.1} className="w-full md:w-48 shrink-0">
               <div className="relative aspect-[2/3] w-full md:w-48 rounded-2xl overflow-hidden border border-[var(--color-border)] shadow-[var(--shadow-soft)] bg-[var(--color-surface)]">
                 <Image
-                  src="/images/profile/ben-nguyen.png"
+                  src="/images/profile/ben-nguyen-profile.png"
                   alt="Ben Nguyen — Portrait Photo"
                   fill
                   sizes="(max-width: 768px) 100vw, 192px"
