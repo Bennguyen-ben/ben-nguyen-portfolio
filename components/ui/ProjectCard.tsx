@@ -37,8 +37,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       aria-label={`Project: ${project.title} — ${project.subtitle}`}
     >
       <div>
-        {/* Preview image / video thumbnail area */}
-        <div className="relative h-56 sm:h-64 overflow-hidden bg-[var(--color-surface)] border-b border-[var(--color-border)]">
+        {/* Preview image / document thumbnail */}
+        <div className="relative h-56 sm:h-60 overflow-hidden bg-[var(--color-surface)] border-b border-[var(--color-border)]">
           {project.previewImage ? (
             <div className="relative w-full h-full">
               <Image
@@ -56,27 +56,27 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
           )}
 
-          {/* Project number pill */}
-          <div className="absolute top-3.5 left-3.5 z-10">
-            <span className="project-number bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-[var(--color-border)] text-[10px] font-bold shadow-sm">
-              {project.number}
-            </span>
-          </div>
-
-          {/* Project label */}
+          {/* Unit pill */}
           {project.projectLabel && (
-            <div className="absolute top-3.5 right-3.5 z-10">
-              <span className="text-[10px] font-semibold bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-fg)] shadow-sm">
+            <div className="absolute top-3.5 left-3.5 z-10">
+              <span className="text-[10px] font-bold bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-accent)] shadow-sm">
                 {project.projectLabel}
               </span>
             </div>
           )}
+
+          {/* Project Year */}
+          <div className="absolute top-3.5 right-3.5 z-10">
+            <span className="text-[10px] font-semibold bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-muted)] shadow-sm">
+              {project.year}
+            </span>
+          </div>
         </div>
 
         {/* Content */}
         <div className="p-6 md:p-7">
           {/* Categories */}
-          <div className="flex flex-wrap gap-1.5 mb-3.5" aria-label="Project categories">
+          <div className="flex flex-wrap gap-1.5 mb-3.5" aria-label="Project focus areas">
             {project.categories.slice(0, 3).map((cat) => (
               <span
                 key={cat}
@@ -95,24 +95,24 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             {project.subtitle}
           </p>
 
-          {/* Actual Role */}
+          {/* Role / Contribution */}
           {project.role && (
-            <div className="mb-3 flex items-center gap-1.5 text-xs text-[var(--color-muted)]">
-              <span className="font-semibold text-[var(--color-fg)]">Role:</span>
+            <div className="mb-3 flex items-start gap-1.5 text-xs text-[var(--color-muted)]">
+              <span className="font-semibold text-[var(--color-fg)] shrink-0">Contribution:</span>
               <span>{project.role}</span>
             </div>
           )}
 
-          {/* Brief Description */}
-          <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-4 line-clamp-2">
+          {/* Brief Objective / Tagline */}
+          <p className="text-xs text-[var(--color-muted)] leading-relaxed mb-4 line-clamp-2">
             {project.tagline}
           </p>
 
-          {/* Verified Deliverable or Result */}
+          {/* Verified Deliverables / Methods */}
           {project.verifiedDeliverable && (
             <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-sm)] p-3 mb-5">
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-fg)] mb-1">
-                Verified Deliverable / Result
+                Main Deliverables & Analysis
               </p>
               <p className="text-xs text-[var(--color-muted)] leading-relaxed line-clamp-3">
                 {project.verifiedDeliverable}

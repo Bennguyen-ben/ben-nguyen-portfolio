@@ -5,11 +5,11 @@ const infoItems = [
   { label: "Location", value: "Melbourne, Victoria, Australia" },
   {
     label: "Education",
-    value: "Bachelor of Business\nDeakin University (Burwood)\nMajor: Business & Digital Communication",
+    value: "Bachelor of Business\nDeakin University (Burwood, Melbourne)\nMajor: Business and Digital Communication\nJuly 2025 – Present (Expected May 2028)",
   },
   {
     label: "Core Specialisations",
-    value: "Brand Strategy & Auditing\nSocial Media Strategy & Pacing\nShort-Form Video Production\nAudience Segmentation",
+    value: "Digital Content Creation\nSocial Media Strategy & Pacing\nAudience Research & Marketing Analysis\nProcurement Operations & Business Administration",
   },
 ];
 
@@ -22,7 +22,7 @@ export function About() {
     >
       <div className="container-site">
         <AnimatedSection>
-          <p className="section-label mb-4">About</p>
+          <p className="section-label mb-4">About Me</p>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -55,13 +55,10 @@ export function About() {
               <AnimatedSection delay={0.12}>
                 <div className="space-y-4 text-[var(--color-muted)] text-sm md:text-base leading-relaxed">
                   <p>
-                    I am an early-career marketing and content creator completing a Bachelor of Business at Deakin University in Melbourne, majoring in Business and Digital Communication.
+                    I focus on digital content creation, social media strategy, audience research, and marketing analysis, turning data-informed insights into high-retention visual storytelling. Through high-volume short-form news production at Mekong ASEAN, purchasing operations at FPT Telecom, and administrative client service at SENADHEERA & GORDON Law Firm, I combine creative media execution with structured business communication.
                   </p>
                   <p>
-                    My professional work centers on bridging empirical audience research with high-retention visual storytelling. As a short-form video editor for Mekong ASEAN digital newspaper, I produce 30+ vertical news reports each month under tight deadlines, designing hook structures and dynamic captions for mobile audiences.
-                  </p>
-                  <p>
-                    Combined with a background in frontline legal administration at SG Lawyers, I bring disciplined organizational habits, empathetic stakeholder communication, and rigorous analytical skills to graduate and internship marketing roles.
+                    I am actively seeking digital marketing internships and early-career opportunities where audience research, creative content production, and disciplined operational habits drive measurable engagement.
                   </p>
                 </div>
               </AnimatedSection>
@@ -92,11 +89,12 @@ export function About() {
 
               <div className="mt-8 pt-6 border-t border-[var(--color-border)] flex flex-col sm:flex-row gap-3">
                 <a
-                  href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
+                  href="/documents/Ben-Nguyen-Resume.pdf"
                   className="btn-primary flex-1 justify-center text-xs py-3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  download
+                  download="Ben-Nguyen-Resume.pdf"
+                  aria-label="Download resume"
                 >
                   Download Resume (PDF)
                 </a>

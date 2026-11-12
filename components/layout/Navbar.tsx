@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#home", label: "Home" },
-  { href: "#work", label: "Featured Work" },
+  { href: "#about", label: "About Me" },
   { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Academic Research" },
   { href: "#skills", label: "Skills" },
-  { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -33,7 +33,9 @@ export function Navbar() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   return (
@@ -80,11 +82,11 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
+              href="/documents/Ben-Nguyen-Resume.pdf"
               className="btn-secondary text-xs py-2 px-4"
               target="_blank"
               rel="noopener noreferrer"
-              download
+              download="Ben-Nguyen-Resume.pdf"
               aria-label="Download Ben Nguyen's resume"
             >
               Resume (PDF)
@@ -166,11 +168,11 @@ export function Navbar() {
 
             <div className="container-site py-8 border-t border-[var(--color-border)]">
               <a
-                href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
+                href="/documents/Ben-Nguyen-Resume.pdf"
                 className="btn-primary w-full justify-center text-sm py-3"
                 target="_blank"
                 rel="noopener noreferrer"
-                download
+                download="Ben-Nguyen-Resume.pdf"
                 onClick={() => setMenuOpen(false)}
               >
                 Download Resume (PDF)

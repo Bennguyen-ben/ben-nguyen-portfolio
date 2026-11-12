@@ -3,9 +3,9 @@
 import { motion, useReducedMotion, type Transition } from "framer-motion";
 
 const pillars = [
-  "Marketing Strategy",
+  "Digital Marketing & Content",
+  "Social Media Strategy",
   "Short-Form Video Production",
-  "Brand Management",
   "Audience Research",
 ];
 
@@ -20,7 +20,7 @@ export function Hero() {
     <section
       id="home"
       aria-label="Introduction"
-      className="relative min-h-[92vh] flex items-center overflow-hidden bg-[var(--color-bg)]"
+      className="relative min-h-[90vh] flex items-center overflow-hidden bg-[var(--color-bg)]"
     >
       {/* Grid background */}
       <div className="hero-grid-bg" aria-hidden="true" />
@@ -36,7 +36,7 @@ export function Hero() {
         style={{ opacity: 0.06 }}
       />
 
-      <div className="container-site relative z-10 pt-28 pb-20 md:pt-36 md:pb-24">
+      <div className="container-site relative z-10 pt-28 pb-16 md:pt-36 md:pb-24">
         <div className="max-w-4xl">
           {/* Status pill */}
           <motion.div
@@ -71,7 +71,7 @@ export function Hero() {
             transition={transition(0.14, 0.65)}
             className="text-[var(--color-accent)] font-bold text-lg md:text-xl tracking-wide mb-3"
           >
-            Digital Marketing, Content Creation & Brand Strategy
+            Digital Marketing & Content
           </motion.p>
 
           {/* Pillars */}
@@ -103,7 +103,7 @@ export function Hero() {
             transition={transition(0.24, 0.7)}
             className="display-md text-[var(--color-fg)] mb-6 max-w-2xl"
           >
-            I turn audience insights into measurable content and marketing strategies.
+            Turning audience insights into content and marketing strategies.
           </motion.p>
 
           {/* Supporting text */}
@@ -113,7 +113,7 @@ export function Hero() {
             transition={transition(0.3, 0.65)}
             className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-2xl mb-10"
           >
-            Bachelor of Business student at Deakin University (majoring in Business & Digital Communication) with hands-on experience editing high-volume vertical news at Mekong ASEAN and managing frontline client administration at SG Lawyers.
+            I&apos;m a Bachelor of Business student at Deakin University, majoring in Business and Digital Communication. I have experience in digital content production, video editing, procurement, and business administration, alongside university projects in social media strategy and marketing research.
           </motion.p>
 
           {/* CTAs */}
@@ -124,27 +124,34 @@ export function Hero() {
             className="flex flex-wrap gap-4 items-center mb-10"
           >
             <a
-              href="#work"
+              href="/documents/Ben-Nguyen-Resume.pdf"
               className="btn-primary"
-              aria-label="View Ben Nguyen's featured work"
-            >
-              View Featured Work
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-            <a
-              href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
-              className="btn-secondary"
               target="_blank"
               rel="noopener noreferrer"
-              download
-              aria-label="Download Ben Nguyen's resume"
+              download="Ben-Nguyen-Resume.pdf"
+              aria-label="View Ben Nguyen's resume"
             >
-              Download Resume (PDF)
+              View Resume
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M8 2V11M8 11L5 8M8 11L11 8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M2 13H14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              className="btn-secondary"
+              aria-label="Contact Ben Nguyen"
+            >
+              Contact Me
+            </a>
+            <a
+              href="#experience"
+              className="btn-ghost text-sm font-semibold"
+              aria-label="Explore professional experience"
+            >
+              Explore Experience
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
           </motion.div>
@@ -177,7 +184,7 @@ export function Hero() {
             >
               Published TikTok
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2 10L10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
             <a
@@ -187,7 +194,7 @@ export function Hero() {
             >
               Email
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2 10L10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
           </motion.div>
@@ -198,7 +205,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
           aria-hidden="true"
         >
           <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[var(--color-muted-light)]">

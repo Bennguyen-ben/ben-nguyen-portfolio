@@ -113,14 +113,14 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
       {/* Back link */}
       <div className="container-site pt-28 sm:pt-32 pb-6 relative z-10">
         <Link
-          href="/#work"
+          href={project.slug === "content-portfolio" ? "/#experience" : "/#projects"}
           className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors py-2 px-3 rounded-lg hover:bg-[var(--color-surface)] border border-transparent hover:border-[var(--color-border)]"
-          aria-label="Back to all work"
+          aria-label={project.slug === "content-portfolio" ? "Back to Professional Experience" : "Back to Academic Projects"}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          Back to Work
+          {project.slug === "content-portfolio" ? "Back to Experience" : "Back to Academic Projects"}
         </Link>
       </div>
 
@@ -504,13 +504,13 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                 </div>
               )}
 
-              {/* Back to work */}
+              {/* Back to section */}
               <Link
-                href="/#work"
+                href={project.slug === "content-portfolio" ? "/#experience" : "/#projects"}
                 className="btn-secondary w-full justify-center text-sm"
-                aria-label="View all work"
+                aria-label={project.slug === "content-portfolio" ? "Back to Experience" : "View all academic projects"}
               >
-                ← All Projects
+                {project.slug === "content-portfolio" ? "← Back to Experience" : "← All Academic Projects"}
               </Link>
             </div>
           </aside>

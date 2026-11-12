@@ -31,13 +31,24 @@ const contactLinks = [
   },
   {
     label: "Resume",
-    value: "Download Resume (PDF)",
-    href: "/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf",
+    value: "Download Latest Resume (PDF)",
+    href: "/documents/Ben-Nguyen-Resume.pdf",
     download: true,
     icon: (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <path d="M9 2V11M9 11L6 8M9 11L12 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M3 14H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    label: "TikTok Channel",
+    value: "@kinhtevietnam_asean (Published News)",
+    href: "https://www.tiktok.com/@kinhtevietnam_asean",
+    external: true,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
       </svg>
     ),
   },
@@ -69,7 +80,7 @@ export function Contact() {
 
             <AnimatedSection delay={0.1}>
               <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed mb-8">
-                I am actively seeking marketing internships, early-career content creation, and graduate business opportunities. Whether you want to discuss a role, review my work, or collaborate on a project, I would welcome the conversation.
+                I am actively seeking marketing internships, early-career digital content creation, and graduate business opportunities. Whether you want to discuss a role, review my work, or collaborate on a project, I would welcome the conversation.
               </p>
             </AnimatedSection>
 
@@ -81,7 +92,7 @@ export function Contact() {
                       href={link.href}
                       className="flex items-center gap-4 group p-3 rounded-[var(--radius-md)] bg-[var(--color-card)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-all shadow-xs"
                       {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      {...(link.download ? { download: true } : {})}
+                      {...(link.download ? { download: "Ben-Nguyen-Resume.pdf" } : {})}
                       aria-label={`${link.label}: ${link.value}`}
                     >
                       <span className="w-10 h-10 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-muted)] group-hover:border-[var(--color-accent)] group-hover:text-[var(--color-accent)] group-hover:bg-[var(--color-accent-light)] transition-all flex-shrink-0">
@@ -117,7 +128,7 @@ export function Contact() {
                   Direct Email Outreach
                 </h3>
                 <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-6">
-                  Feel free to send an email directly to discuss potential opportunities or request complete academic transcripts.
+                  Feel free to send an email directly to discuss potential opportunities or request academic references.
                 </p>
 
                 <div className="space-y-4">

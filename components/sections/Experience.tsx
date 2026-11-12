@@ -2,107 +2,120 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import Image from "next/image";
 import Link from "next/link";
 
+interface VideoShowcaseItem {
+  title: string;
+  role: string;
+  platform: string;
+  description: string;
+  tools: string[];
+  src: string;
+  thumbnail: string;
+}
+
 interface ExperienceItem {
+  id: string;
   role: string;
   company: string;
+  department?: string;
   companyLogo?: string;
   location?: string;
   dates: string;
-  teamScope?: string;
-  individualResponsibilities: string[];
-  personalDeliverables: string[];
-  verifiedResults: string[];
+  responsibilities: string[];
   skillsDeveloped: string[];
+  videos?: VideoShowcaseItem[];
   links?: { label: string; href: string; external?: boolean }[];
+  note?: string;
 }
 
 const experiences: ExperienceItem[] = [
+  // ─── 1. MEKONG ASEAN ───
   {
+    id: "mekong-asean",
     role: "Video Editor & Content Creator",
     company: "Mekong ASEAN",
     companyLogo: "/images/mekong-asean-logo.png",
     dates: "September 2025 – Present",
-    teamScope:
-      "Partnered in a newsroom production team of 5+ journalists, editors, and designers; collaborated with 15+ clients and internal editorial stakeholders to coordinate publishing flow.",
-    individualResponsibilities: [
-      "Assembled and edited mobile-first vertical news videos using CapCut and DaVinci Resolve.",
-      "Designed dynamic, high-contrast captions and typography to maximize comprehension for silent mobile viewing.",
-      "Structured algorithmic hook pacing within the initial 3 seconds to optimize viewer retention on TikTok, Facebook, and YouTube Shorts.",
-      "Managed rapid revision cycles and tight turnaround times following breaking economic developments.",
-    ],
-    personalDeliverables: [
-      "Produced 30–40 published short-form news videos each month across Facebook, TikTok, and YouTube.",
-      "Simultaneously managed 5–8 video projects from raw script to published social asset.",
-    ],
-    verifiedResults: [
-      "100,000+ monthly views reached across social media channels.",
-      "100% on-time delivery rate maintained across all assigned projects under daily editorial deadlines.",
-      "20% average reduction in editing turnaround time achieved through template libraries and keyboard workflow optimization.",
+    responsibilities: [
+      "Produced 30+ short-form news videos monthly in collaboration with journalists, editors, and designers.",
+      "Managed 5–8 video projects simultaneously, maintaining 100% on-time delivery while meeting production quality standards in a high-pressure production environment.",
+      "Edited videos using CapCut and DaVinci Resolve for Facebook, TikTok, and YouTube.",
+      "Reduced average editing turnaround time by 20% through improved workflow organisation.",
     ],
     skillsDeveloped: [
       "Short-form Video Editing",
       "Algorithmic Retention Hook Design",
-      "Typographic Overlay & Subtitle Design",
-      "High-Pressure Workflow Organization",
+      "Typographic Subtitle Design for Silent Viewing",
       "Cross-functional Newsroom Collaboration",
+      "Fast-turnaround Workflow Organisation",
+    ],
+    videos: [
+      {
+        title: "Sacombank Leadership News",
+        role: "Video Editor & Content Creator",
+        platform: "Facebook, TikTok & YouTube Shorts",
+        description:
+          "Vertical economic news segment analyzing Sacombank leadership restructuring. Implemented dynamic captions, high-contrast typography, and tight pacing for mobile silent viewing.",
+        tools: ["DaVinci Resolve", "CapCut"],
+        src: "/images/projects/video/scb-leadership-news.mp4",
+        thumbnail: "/images/projects/video/scb-poster.png",
+      },
+      {
+        title: "Masan Executive Appointments",
+        role: "Video Editor & Content Creator",
+        platform: "Facebook, TikTok & YouTube Shorts",
+        description:
+          "Editorial business report detailing senior executive board appointments at Masan Group. Structured narrative with opening visual hooks, corporate b-roll transitions, and synchronized text overlays.",
+        tools: ["DaVinci Resolve", "CapCut"],
+        src: "/images/projects/video/masan-executive-appointments.mp4",
+        thumbnail: "/images/projects/video/masan-poster.png",
+      },
     ],
     links: [
-      { label: "View Case Study & Videos", href: "/work/content-portfolio" },
-      { label: "Published TikTok Channel", href: "https://www.tiktok.com/@kinhtevietnam_asean", external: true },
+      { label: "View Detailed Video Case Study", href: "/work/content-portfolio" },
+      { label: "Watch on TikTok (@kinhtevietnam_asean)", href: "https://www.tiktok.com/@kinhtevietnam_asean", external: true },
     ],
   },
+
+  // ─── 2. FPT TELECOM ───
   {
+    id: "fpt-telecom",
+    role: "Purchasing Department Intern",
+    company: "FPT Telecom",
+    department: "Purchasing Department (Ban Mua Hàng)",
+    dates: "November 2026 – Present",
+    responsibilities: [
+      "Processed purchase orders and reviewed supporting documents in accordance with internal procurement procedures.",
+      "Checked purchasing requests for accuracy and completeness before further processing.",
+      "Maintained supplier information and procurement records to support daily business operations.",
+      "Followed internal purchasing regulations and confidentiality requirements when handling procurement documentation.",
+    ],
+    skillsDeveloped: [
+      "Business Documentation & Procurement Administration",
+      "Purchase Order Processing",
+      "Spreadsheet Management & Attention to Detail",
+      "Cross-Departmental Business Communication",
+      "Records Management & Confidentiality Protocols",
+    ],
+  },
+
+  // ─── 3. SENADHEERA & GORDON LAW FIRM ───
+  {
+    id: "senadheera-gordon",
     role: "Administrative Assistant",
-    company: "Senadheera & Gordon Lawyers (SG Lawyers)",
+    company: "SENADHEERA & GORDON Law Firm",
     location: "Glen Waverley, Victoria, Australia",
-    dates: "July 2025 – July 2026",
-    teamScope:
-      "Legal practice administrative operations supporting principal solicitors, legal staff, and diverse multicultural clients.",
-    individualResponsibilities: [
-      "Managed the front desk, delivering welcoming, empathetic, and professional client service.",
-      "Scheduled and coordinated client appointments weekly while managing high-volume telephone and email enquiries.",
-      "Entered and maintained sensitive client records in legal database systems with strict confidentiality.",
-      "Coordinated documentation procedures, filings, and urgent administrative requests under strict timelines.",
-    ],
-    personalDeliverables: [
-      "Daily reception operations and appointment schedules.",
-      "Accurately updated and verified client databases and matter files.",
-    ],
-    verifiedResults: [
-      "Maintained 100% confidentiality compliance handling sensitive legal records over a 12-month tenure.",
-      "Zero reported scheduling conflicts through disciplined calendar coordination.",
+    dates: "July 2025 – August 2026",
+    responsibilities: [
+      "Assisted approximately 10–20 clients and visitors daily while managing front desk operations.",
+      "Scheduled client appointments and responded to enquiries in person and by phone.",
+      "Maintained accurate client records while protecting confidential information.",
     ],
     skillsDeveloped: [
-      "Client Relationship Management",
-      "Front-Desk Administration",
-      "Confidential Data Governance",
+      "Front-Desk Client Relationship Management",
       "Empathetic & Professional Communication",
+      "Confidential Data Governance",
+      "Calendar Coordination & Scheduling",
       "Time Management Under Pressure",
-    ],
-  },
-  {
-    role: "Volunteer Activity Coordinator",
-    company: "Charity Program for Children with Disabilities",
-    location: "Vietnam",
-    dates: "December 2023",
-    teamScope:
-      "Community volunteer group supporting children with diverse physical and cognitive needs and their families.",
-    individualResponsibilities: [
-      "Coordinated inclusive play and interactive learning activities during community events.",
-      "Communicated empathetically with children, families, and team volunteers to foster a safe, welcoming environment.",
-      "Adapted activities dynamically to meet varied physical and sensory requirements.",
-    ],
-    personalDeliverables: [
-      "Organized daily inclusive activity sessions and community engagement workshops.",
-    ],
-    verifiedResults: [
-      "Successfully created an accessible, secure event space that fostered community participation and connection.",
-    ],
-    skillsDeveloped: [
-      "Empathetic Communication",
-      "Active Listening",
-      "Situational Adaptability",
-      "Inclusive Group Coordination",
     ],
   },
 ];
@@ -116,40 +129,50 @@ export function Experience() {
     >
       <div className="container-site">
         <AnimatedSection>
-          <p className="section-label mb-4">Background</p>
+          <p className="section-label mb-4">Experience</p>
         </AnimatedSection>
 
         <AnimatedSection delay={0.05}>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-            <h2
-              id="experience-heading"
-              className="display-md text-[var(--color-fg)] max-w-xl"
-            >
-              Professional Experience
-            </h2>
+            <div>
+              <h2
+                id="experience-heading"
+                className="display-md text-[var(--color-fg)] max-w-xl mb-2"
+              >
+                Professional Experience
+              </h2>
+              <p className="text-[var(--color-accent)] font-semibold text-base">
+                Digital Content Production • Procurement Operations • Legal Administration
+              </p>
+            </div>
             <p className="text-[var(--color-muted)] text-base max-w-md md:text-right">
-              Demonstrated contributions across newsroom video editing, legal administration, and community engagement.
+              Demonstrated contributions across fast-turnaround video newsrooms, business procurement administration, and frontline client service.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="space-y-10">
+        <div className="space-y-12">
           {experiences.map((job, index) => (
             <AnimatedSection
-              key={`${job.company}-${job.role}`}
+              key={job.id}
               delay={index * 0.08}
               className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-7 md:p-10 shadow-[var(--shadow-soft)]"
             >
               {/* Header */}
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6 pb-6 border-b border-[var(--color-border)]">
                 <div>
-                  <h3 className="text-xl font-bold text-[var(--color-fg)] tracking-tight mb-1.5">
+                  <h3 className="text-xl md:text-2xl font-bold text-[var(--color-fg)] tracking-tight mb-1.5">
                     {job.role}
                   </h3>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-[var(--color-accent)] font-semibold text-base">
+                    <span className="text-[var(--color-accent)] font-bold text-base md:text-lg">
                       {job.company}
                     </span>
+                    {job.department && (
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                        {job.department}
+                      </span>
+                    )}
                     {job.companyLogo && (
                       <Image
                         src={job.companyLogo}
@@ -169,101 +192,124 @@ export function Experience() {
                     )}
                   </div>
                 </div>
-                <div className="text-sm font-semibold text-[var(--color-muted)] md:text-right shrink-0 bg-[var(--color-surface)] px-3 py-1.5 rounded-full border border-[var(--color-border)] inline-block">
+                <div className="text-xs md:text-sm font-semibold text-[var(--color-muted)] md:text-right shrink-0 bg-[var(--color-surface)] px-3.5 py-1.5 rounded-full border border-[var(--color-border)] inline-block">
                   {job.dates}
                 </div>
               </div>
 
-              {/* Team Scope */}
-              {job.teamScope && (
-                <div className="mb-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-md)] p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-fg)] mb-1">
-                    Team Scope & Setting
-                  </p>
-                  <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-                    {job.teamScope}
-                  </p>
-                </div>
-              )}
-
-              {/* Grid: Responsibilities & Deliverables vs Results */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
-                {/* Left: Individual Responsibilities & Personal Deliverables */}
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-fg)] mb-3 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" aria-hidden="true" />
-                      Individual Responsibilities
-                    </h4>
-                    <ul className="space-y-2.5" role="list">
-                      {job.individualResponsibilities.map((resp, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--color-muted)] leading-relaxed">
-                          <span className="text-[var(--color-accent)] font-bold shrink-0 mt-0.5">•</span>
-                          <span>{resp}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-fg)] mb-3 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-600" aria-hidden="true" />
-                      Personal Deliverables
-                    </h4>
-                    <ul className="space-y-2.5" role="list">
-                      {job.personalDeliverables.map((deliv, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--color-muted)] leading-relaxed">
-                          <span className="text-emerald-600 font-bold shrink-0 mt-0.5">•</span>
-                          <span>{deliv}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              {/* Grid: Responsibilities vs Skills Developed */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-6">
+                {/* Left: Responsibilities */}
+                <div className="lg:col-span-7 space-y-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-fg)] mb-3 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" aria-hidden="true" />
+                    Key Responsibilities
+                  </h4>
+                  <ul className="space-y-2.5" role="list">
+                    {job.responsibilities.map((resp, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--color-muted)] leading-relaxed">
+                        <span className="text-[var(--color-accent)] font-bold shrink-0 mt-0.5">•</span>
+                        <span>{resp}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Right: Verified Results & Skills */}
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-fg)] mb-3 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-blue-600" aria-hidden="true" />
-                      Verified Measurable Results
-                    </h4>
-                    <ul className="space-y-2.5" role="list">
-                      {job.verifiedResults.map((result, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--color-muted)] leading-relaxed bg-[var(--color-surface)] p-2.5 rounded-lg border border-[var(--color-border)]">
-                          <svg className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="font-medium text-[var(--color-fg)]">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted-light)] mb-3">
-                      Skills Developed
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {job.skillsDeveloped.map((skill) => (
-                        <span key={skill} className="skill-tag text-xs">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+                {/* Right: Skills Developed */}
+                <div className="lg:col-span-5 space-y-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted-light)] mb-3">
+                    Transferable Skills & Capabilities
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {job.skillsDeveloped.map((skill) => (
+                      <span key={skill} className="skill-tag text-xs">
+                        {skill}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
 
+              {/* INTEGRATED VIDEO PORTFOLIO (for Mekong ASEAN) */}
+              {job.videos && job.videos.length > 0 && (
+                <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                    <div>
+                      <h4 className="text-lg font-bold text-[var(--color-fg)] tracking-tight">
+                        Featured Short-Form Video Portfolio
+                      </h4>
+                      <p className="text-xs text-[var(--color-muted)] mt-0.5">
+                        Verified 9:16 portrait video reports edited for Mekong ASEAN digital newspaper mobile channels.
+                      </p>
+                    </div>
+                    <a
+                      href="https://www.tiktok.com/@kinhtevietnam_asean"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary text-xs py-2 px-4 inline-flex items-center gap-2 self-start sm:self-auto shrink-0"
+                    >
+                      <span>Watch on TikTok</span>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  </div>
+
+                  {/* 2 Videos Side-by-Side on Desktop, Stacked on Mobile */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    {job.videos.map((video) => (
+                      <div
+                        key={video.title}
+                        className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] overflow-hidden shadow-xs flex flex-col"
+                      >
+                        {/* 9:16 Video player */}
+                        <div className="relative aspect-[9/16] bg-neutral-950 flex items-center justify-center overflow-hidden">
+                          <video
+                            controls
+                            preload="metadata"
+                            playsInline
+                            className="w-full h-full object-cover"
+                            poster={video.thumbnail}
+                          >
+                            <source src={video.src} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                        <div className="p-4 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h5 className="text-sm font-semibold text-[var(--color-fg)] mb-1 leading-snug">
+                              {video.title}
+                            </h5>
+                            <p className="text-[11px] text-[var(--color-muted)] mb-2">
+                              <span className="font-semibold text-[var(--color-fg)]">Role:</span> {video.role}
+                            </p>
+                            <p className="text-xs text-[var(--color-muted)] leading-relaxed">
+                              {video.description}
+                            </p>
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-[var(--color-border)]">
+                            {video.tools.map((t) => (
+                              <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-[var(--color-card)] border border-[var(--color-border)] text-[var(--color-muted)] font-mono">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Action Links */}
               {job.links && job.links.length > 0 && (
-                <div className="pt-5 border-t border-[var(--color-border)] flex flex-wrap gap-3">
+                <div className="pt-6 border-t border-[var(--color-border)] flex flex-wrap gap-3 mt-6">
                   {job.links.map((link) => (
                     <Link
                       key={link.label}
                       href={link.href}
                       {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="btn-primary text-xs py-2 px-4"
+                      className="btn-secondary text-xs py-2 px-4"
                     >
                       {link.label}
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">

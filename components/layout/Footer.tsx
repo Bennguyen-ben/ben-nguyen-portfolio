@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "#work", label: "Featured Work" },
+  { href: "#about", label: "About Me" },
   { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
-  { href: "#about", label: "About" },
+  { href: "#projects", label: "Academic Research & Projects" },
+  { href: "#skills", label: "Skills & Career Progression" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -59,15 +59,17 @@ export function Footer() {
             >
               LinkedIn
             </a>
+            <span className="text-[var(--color-border)] select-none" aria-hidden="true">•</span>
             <a
               href="https://www.tiktok.com/@kinhtevietnam_asean"
               className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Published TikTok"
+              aria-label="Mekong ASEAN published TikTok channel"
             >
-              TikTok
+              Published TikTok
             </a>
+            <span className="text-[var(--color-border)] select-none" aria-hidden="true">•</span>
             <a
               href="mailto:bennguyen112007@gmail.com"
               className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
@@ -75,25 +77,14 @@ export function Footer() {
             >
               Email
             </a>
-            <a
-              href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
-              download
-              className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
-              aria-label="Download resume"
-            >
-              Resume (PDF)
-            </a>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-[var(--color-border)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-xs text-[var(--color-muted-light)]">
-            © 2026 Ben Nguyen. All rights reserved.
-          </p>
-          <p className="text-xs text-[var(--color-muted-light)]">
-            Evidence-Based Professional Portfolio
-          </p>
+        <div className="divider my-8" />
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-muted-light)]">
+          <p>© {new Date().getFullYear()} Ben Nguyen. All rights reserved.</p>
+          <p>Built with Next.js, TypeScript & Tailwind CSS</p>
         </div>
       </div>
     </footer>
