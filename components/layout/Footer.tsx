@@ -1,9 +1,10 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "#about", label: "About" },
-  { href: "#work", label: "Work" },
+  { href: "#work", label: "Featured Work" },
+  { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
+  { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -13,18 +14,21 @@ export function Footer() {
       role="contentinfo"
       className="border-t border-[var(--color-border)] bg-[var(--color-bg)]"
     >
-      <div className="container-site py-14">
+      <div className="container-site py-12 md:py-14">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
           {/* Brand */}
           <div className="max-w-xs">
-            <p className="font-semibold text-sm tracking-tight text-[var(--color-fg)]">
+            <Link
+              href="/"
+              className="font-bold text-sm tracking-tight text-[var(--color-fg)]"
+            >
               BEN NGUYEN
-            </p>
-            <p className="text-[var(--color-muted)] text-sm mt-1">
-              Digital Marketing & Content
+            </Link>
+            <p className="text-[var(--color-muted)] text-xs mt-1">
+              Digital Marketing, Content Creation & Brand Strategy
             </p>
             <p className="text-[var(--color-muted-light)] text-xs mt-1">
-              Melbourne, Australia
+              Melbourne, Victoria, Australia
             </p>
           </div>
 
@@ -35,7 +39,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
+                    className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
                   >
                     {link.label}
                   </a>
@@ -48,7 +52,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <a
               href="https://www.linkedin.com/in/haminhnguyenkhac"
-              className="text-sm text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
+              className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Ben Nguyen on LinkedIn"
@@ -56,18 +60,28 @@ export function Footer() {
               LinkedIn
             </a>
             <a
+              href="https://www.tiktok.com/@kinhtevietnam_asean"
+              className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Published TikTok"
+            >
+              TikTok
+            </a>
+            <a
               href="mailto:bennguyen112007@gmail.com"
-              className="text-sm text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
+              className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
               aria-label="Email Ben Nguyen"
             >
               Email
             </a>
             <a
               href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
-              download="Ben-Nguyen-Digital-Marketing-Resume.pdf"
+              download
+              className="text-xs font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"
               aria-label="Download resume"
             >
-              Resume
+              Resume (PDF)
             </a>
           </div>
         </div>
@@ -78,7 +92,7 @@ export function Footer() {
             © 2026 Ben Nguyen. All rights reserved.
           </p>
           <p className="text-xs text-[var(--color-muted-light)]">
-            Designed and built by Ben Nguyen with AI-assisted development.
+            Evidence-Based Professional Portfolio
           </p>
         </div>
       </div>

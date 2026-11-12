@@ -36,5 +36,7 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-*.mp4
-*.mp4
+
+# Allow tracked portfolio videos in public/images/projects/video/
+# but ignore raw large source videos in root or scratch directories
+/*.mp4

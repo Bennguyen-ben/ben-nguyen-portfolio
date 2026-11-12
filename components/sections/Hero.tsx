@@ -1,19 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, type Transition } from "framer-motion";
 
 const pillars = [
-  "Social Media Strategy",
-  "Content Creation",
   "Marketing Strategy",
+  "Short-Form Video Production",
+  "Brand Management",
+  "Audience Research",
 ];
 
+const easeCubic: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 export function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const transition = (delay: number, duration: number = 0.6): Transition =>
+    prefersReducedMotion ? { duration: 0 } : { duration, delay, ease: easeCubic };
+
   return (
     <section
       id="home"
       aria-label="Introduction"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[var(--color-bg)]"
+      className="relative min-h-[92vh] flex items-center overflow-hidden bg-[var(--color-bg)]"
     >
       {/* Grid background */}
       <div className="hero-grid-bg" aria-hidden="true" />
@@ -29,55 +36,55 @@ export function Hero() {
         style={{ opacity: 0.06 }}
       />
 
-      <div className="container-site relative z-10 pt-28 pb-24 md:pt-32 md:pb-28">
+      <div className="container-site relative z-10 pt-28 pb-20 md:pt-36 md:pb-24">
         <div className="max-w-4xl">
           {/* Status pill */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 bg-white border border-[var(--color-border)] rounded-full px-4 py-2 mb-8 shadow-[var(--shadow-soft)]"
+            transition={transition(0, 0.5)}
+            className="inline-flex items-center gap-2.5 bg-white border border-[var(--color-border)] rounded-full px-4 py-2 mb-8 shadow-[var(--shadow-soft)]"
           >
             <span
-              className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+              className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
               aria-hidden="true"
             />
-            <span className="text-xs font-medium text-[var(--color-muted)] tracking-wide">
-              Available for internships & graduate marketing roles
+            <span className="text-xs font-semibold text-[var(--color-muted)] tracking-wide">
+              Available for Marketing Internships & Graduate Opportunities
             </span>
           </motion.div>
 
           {/* Name */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="display-xl text-[var(--color-fg)] mb-4"
+            transition={transition(0.08, 0.7)}
+            className="display-xl text-[var(--color-fg)] mb-3"
           >
             Ben Nguyen
           </motion.h1>
 
           {/* Positioning */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[var(--color-accent)] font-semibold text-lg md:text-xl tracking-wide mb-3"
+            transition={transition(0.14, 0.65)}
+            className="text-[var(--color-accent)] font-bold text-lg md:text-xl tracking-wide mb-3"
           >
-            Digital Marketing & Content
+            Digital Marketing, Content Creation & Brand Strategy
           </motion.p>
 
           {/* Pillars */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.24 }}
-            className="flex flex-wrap items-center gap-2 mb-10"
+            transition={transition(0.2, 0.6)}
+            className="flex flex-wrap items-center gap-2 mb-8"
             aria-label="Areas of focus"
           >
             {pillars.map((pillar, i) => (
               <span key={pillar} className="flex items-center gap-2">
-                <span className="text-sm font-medium text-[var(--color-muted)]">
+                <span className="text-xs md:text-sm font-medium text-[var(--color-muted)]">
                   {pillar}
                 </span>
                 {i < pillars.length - 1 && (
@@ -91,37 +98,37 @@ export function Hero() {
 
           {/* Headline */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={transition(0.24, 0.7)}
             className="display-md text-[var(--color-fg)] mb-6 max-w-2xl"
           >
-            I turn audience insights into content and marketing strategies.
+            I turn audience insights into measurable content and marketing strategies.
           </motion.p>
 
           {/* Supporting text */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-xl mb-10"
+            transition={transition(0.3, 0.65)}
+            className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-2xl mb-10"
           >
-            Bachelor of Business student at Deakin University majoring in Business and Digital Communication, with hands-on experience developing social media campaigns, producing short-form video content, and conducting audience research.
+            Bachelor of Business student at Deakin University (majoring in Business & Digital Communication) with hands-on experience editing high-volume vertical news at Mekong ASEAN and managing frontline client administration at SG Lawyers.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.46, ease: [0.16, 1, 0.3, 1] }}
+            transition={transition(0.36, 0.6)}
             className="flex flex-wrap gap-4 items-center mb-10"
           >
             <a
               href="#work"
               className="btn-primary"
-              aria-label="View Ben Nguyen's work"
+              aria-label="View Ben Nguyen's featured work"
             >
-              View My Work
+              View Featured Work
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -131,20 +138,22 @@ export function Hero() {
               className="btn-secondary"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Ben Nguyen's resume"
+              download
+              aria-label="Download Ben Nguyen's resume"
             >
-              View Resume
+              Download Resume (PDF)
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8 2V11M8 11L5 8M8 11L11 8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2 13H14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
               </svg>
             </a>
           </motion.div>
 
           {/* Social links */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.54 }}
+            transition={transition(0.42, 0.5)}
             className="flex items-center gap-5"
           >
             <a
@@ -155,6 +164,18 @@ export function Hero() {
               aria-label="Ben Nguyen on LinkedIn"
             >
               LinkedIn
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@kinhtevietnam_asean"
+              className="btn-ghost text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mekong ASEAN published TikTok channel"
+            >
+              Published TikTok
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -176,17 +197,17 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+          transition={{ delay: 1.0, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
           aria-hidden="true"
         >
-          <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-[var(--color-muted-light)]">
-            Scroll
+          <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[var(--color-muted-light)]">
+            Explore
           </span>
           <motion.div
-            animate={{ y: [0, 6, 0] }}
+            animate={prefersReducedMotion ? {} : { y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="w-px h-10 bg-gradient-to-b from-[var(--color-border)] to-transparent"
+            className="w-px h-8 bg-gradient-to-b from-[var(--color-border)] to-transparent"
           />
         </motion.div>
       </div>

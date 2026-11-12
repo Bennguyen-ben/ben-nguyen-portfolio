@@ -34,7 +34,15 @@ function SectionBlock({
   );
 }
 
-function VideoPlaceholder({ title, role, platform, description, src, embedUrl, thumbnail }: {
+function VideoPlayerCard({
+  title,
+  role,
+  platform,
+  description,
+  src,
+  embedUrl,
+  thumbnail,
+}: {
   title: string;
   role?: string;
   platform?: string;
@@ -43,11 +51,19 @@ function VideoPlaceholder({ title, role, platform, description, src, embedUrl, t
   embedUrl?: string;
   thumbnail?: string;
 }) {
+  if (!src && !embedUrl) return null;
+
   return (
     <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-soft)] flex flex-col h-full w-full max-w-[340px] mx-auto">
       <div className="relative aspect-[9/16] bg-neutral-950 flex items-center justify-center overflow-hidden">
         {src ? (
-          <video controls preload="metadata" playsInline className="w-full h-full object-cover" poster={thumbnail}>
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="w-full h-full object-cover"
+            poster={thumbnail}
+          >
             <source src={src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -59,23 +75,24 @@ function VideoPlaceholder({ title, role, platform, description, src, embedUrl, t
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        ) : (
-          <div className="text-center space-y-3 p-4">
-            <div className="w-14 h-14 rounded-full bg-[var(--color-border)] flex items-center justify-center mx-auto">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <path d="M8 5.5L17 11L8 16.5V5.5Z" fill="currentColor" className="text-[var(--color-muted)]" />
-              </svg>
-            </div>
-            <p className="text-xs font-mono text-[var(--color-muted-light)]">[ADD VIDEO]</p>
-          </div>
-        )}
+        ) : null}
       </div>
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <h4 className="text-sm font-semibold text-[var(--color-fg)] mb-1.5 leading-snug">{title}</h4>
-          {role && <p className="text-xs text-[var(--color-muted)] mb-1"><span className="font-semibold text-[var(--color-fg)]">Role:</span> {role}</p>}
-          {platform && <p className="text-xs text-[var(--color-muted)] mb-2"><span className="font-semibold text-[var(--color-fg)]">Platform:</span> {platform}</p>}
-          {description && <p className="text-xs text-[var(--color-muted-light)] leading-relaxed mt-2">{description}</p>}
+          {role && (
+            <p className="text-xs text-[var(--color-muted)] mb-1">
+              <span className="font-semibold text-[var(--color-fg)]">Role:</span> {role}
+            </p>
+          )}
+          {platform && (
+            <p className="text-xs text-[var(--color-muted)] mb-2">
+              <span className="font-semibold text-[var(--color-fg)]">Platform:</span> {platform}
+            </p>
+          )}
+          {description && (
+            <p className="text-xs text-[var(--color-muted-light)] leading-relaxed mt-2">{description}</p>
+          )}
         </div>
       </div>
     </div>
@@ -103,7 +120,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          All Work
+          Back to Work
         </Link>
       </div>
 
@@ -183,11 +200,23 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
           {/* Body */}
           <div className="lg:col-span-8">
 
-            {/* Context */}
-            {cs?.context && (
+            {/* Objective */}
+            {cs?.objective && (
               <AnimatedSection className="mb-12">
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-4">
-                  Context
+                  Objective
+                </h2>
+                <p className="text-[var(--color-muted)] text-base leading-relaxed">
+                  {cs.objective}
+                </p>
+              </AnimatedSection>
+            )}
+
+            {/* Context */}
+            {cs?.context && (
+              <AnimatedSection delay={0.04} className="mb-12">
+                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-4">
+                  Context & Background
                 </h2>
                 <p className="text-[var(--color-muted)] text-base leading-relaxed">
                   {cs.context}
@@ -195,17 +224,41 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
               </AnimatedSection>
             )}
 
+            {/* Team vs Individual Scope */}
+            {(cs?.teamScope || cs?.individualContribution) && (
+              <AnimatedSection delay={0.06} className="mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6">
+                  {cs.teamScope && (
+                    <div>
+                      <h3 className="cs-section-label mb-2 text-[var(--color-fg)]">Team Scope & Collaboration</h3>
+                      <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                        {cs.teamScope}
+                      </p>
+                    </div>
+                  )}
+                  {cs.individualContribution && (
+                    <div>
+                      <h3 className="cs-section-label mb-2 text-[var(--color-accent)]">My Individual Contribution</h3>
+                      <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                        {cs.individualContribution}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </AnimatedSection>
+            )}
+
             {/* Challenge */}
             {cs?.challenge && (
-              <AnimatedSection delay={0.06} className="mb-12">
+              <AnimatedSection delay={0.08} className="mb-12">
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-4">
-                  The Challenge
+                  The Strategic Challenge
                 </h2>
                 <p className="text-[var(--color-muted)] text-base leading-relaxed mb-4">
                   {cs.challenge}
                 </p>
                 {cs.challengeList && cs.challengeList.length > 0 && (
-                  <ul className="space-y-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-md)] p-5" role="list">
+                  <ul className="space-y-2.5 bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-md)] p-5" role="list">
                     {cs.challengeList.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] flex-shrink-0" aria-hidden="true" />
@@ -217,11 +270,30 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
               </AnimatedSection>
             )}
 
-            {/* Research */}
-            {cs?.research && cs.research.length > 0 && (
+            {/* Methods & Tools */}
+            {cs?.methodsAndTools && cs.methodsAndTools.length > 0 && (
               <AnimatedSection delay={0.1} className="mb-12">
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
-                  Research & Audit
+                  Methods & Tools Applied
+                </h2>
+                <div className="space-y-6">
+                  {cs.methodsAndTools.map((section) => (
+                    <SectionBlock
+                      key={section.label}
+                      label={section.label}
+                      content={section.content}
+                      list={section.list}
+                    />
+                  ))}
+                </div>
+              </AnimatedSection>
+            )}
+
+            {/* Research & Audit */}
+            {cs?.research && cs.research.length > 0 && (
+              <AnimatedSection delay={0.12} className="mb-12">
+                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
+                  Research & Analysis
                 </h2>
                 <div className="space-y-6">
                   {cs.research.map((section) => (
@@ -240,7 +312,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
             {cs?.keyFindings && cs.keyFindings.length > 0 && (
               <AnimatedSection delay={0.14} className="mb-12">
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
-                  Key Findings
+                  Key Findings & Insights
                 </h2>
                 <div className="space-y-6">
                   {cs.keyFindings.map((section) => (
@@ -255,11 +327,11 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
               </AnimatedSection>
             )}
 
-            {/* Strategy */}
+            {/* Strategy & Recommendations */}
             {cs?.strategy && cs.strategy.length > 0 && (
-              <AnimatedSection delay={0.18} className="mb-12">
+              <AnimatedSection delay={0.16} className="mb-12">
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
-                  Strategy & Recommendations
+                  Strategy & Execution Plan
                 </h2>
                 <div className="space-y-6">
                   {cs.strategy.map((section) => (
@@ -274,18 +346,95 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
               </AnimatedSection>
             )}
 
-            {/* Project Files */}
-            {cs?.projectFiles && cs.projectFiles.length > 0 && (
+            {/* Deliverables */}
+            {cs?.deliverables && cs.deliverables.length > 0 && (
+              <AnimatedSection delay={0.18} className="mb-12">
+                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
+                  Deliverables Produced
+                </h2>
+                <div className="space-y-6">
+                  {cs.deliverables.map((section) => (
+                    <SectionBlock
+                      key={section.label}
+                      label={section.label}
+                      content={section.content}
+                      list={section.list}
+                    />
+                  ))}
+                </div>
+              </AnimatedSection>
+            )}
+
+            {/* Results & Evidence */}
+            {cs?.resultsAndEvidence && cs.resultsAndEvidence.length > 0 && (
               <AnimatedSection delay={0.2} className="mb-12">
+                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
+                  Verified Results & Evidence
+                </h2>
+                <div className="space-y-6">
+                  {cs.resultsAndEvidence.map((section) => (
+                    <SectionBlock
+                      key={section.label}
+                      label={section.label}
+                      content={section.content}
+                      list={section.list}
+                    />
+                  ))}
+                </div>
+              </AnimatedSection>
+            )}
+
+            {/* Video Showcase (Mekong ASEAN) */}
+            {project.videos && project.videos.length > 0 && (
+              <AnimatedSection delay={0.22} className="mb-12">
+                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
+                  Published Video Showcase
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
+                  {project.videos.map((video) => (
+                    <VideoPlayerCard
+                      key={video.title}
+                      title={video.title}
+                      role={video.role}
+                      platform={video.platform}
+                      description={video.description}
+                      src={video.src}
+                      embedUrl={video.embedUrl}
+                      thumbnail={video.thumbnail}
+                    />
+                  ))}
+                </div>
+                {/* TikTok button */}
+                <div className="mt-8 text-center sm:text-left">
+                  <a
+                    href="https://www.tiktok.com/@kinhtevietnam_asean"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 btn-primary"
+                  >
+                    <span>Watch Verified Channel on TikTok</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                </div>
+              </AnimatedSection>
+            )}
+
+            {/* Project Files (Downloads) */}
+            {cs?.projectFiles && cs.projectFiles.length > 0 && (
+              <AnimatedSection delay={0.24} className="mb-12">
                 <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 sm:p-8 shadow-[var(--shadow-soft)]">
                   <div className="flex items-center gap-2.5 mb-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true" />
                     <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight">
-                      Project Files
+                      Verified Project Files & Documentation
                     </h2>
                   </div>
                   <p className="text-sm text-[var(--color-muted)] mb-6">
-                    Download and view the original project deliverables and documentation:
+                    View and download original project deliverables:
                   </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-3.5">
                     {cs.projectFiles.map((file, i) => (
@@ -310,71 +459,11 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
               </AnimatedSection>
             )}
 
-            {/* Measurement */}
-            {cs?.measurement && cs.measurement.length > 0 && (
-              <AnimatedSection delay={0.22} className="mb-12">
-                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
-                  Measurement
-                </h2>
-                <div className="space-y-6">
-                  {cs.measurement.map((section) => (
-                    <SectionBlock
-                      key={section.label}
-                      label={section.label}
-                      content={section.content}
-                      list={section.list}
-                    />
-                  ))}
-                </div>
-              </AnimatedSection>
-            )}
-
-            {/* Video gallery (content portfolio) */}
-            {project.videos && project.videos.length > 0 && (
-              <AnimatedSection delay={0.14} className="mb-12">
-                <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-6">
-                  Video Work
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-                  {project.videos.map((video) => (
-                    <VideoPlaceholder
-                      key={video.title}
-                      title={video.title}
-                      role={video.role}
-                      platform={video.platform}
-                      description={video.description}
-                      src={video.src}
-                      embedUrl={video.embedUrl}
-                      thumbnail={video.thumbnail}
-                    />
-                  ))}
-                </div>
-                {/* TikTok button for content-portfolio project */}
-                {project.slug === "content-portfolio" && (
-                  <div className="mt-8 text-center sm:text-left">
-                    <a
-                      href="https://www.tiktok.com/@kinhtevietnam_asean"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 btn-primary"
-                    >
-                      <span>Watch on TikTok</span>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                    </a>
-                  </div>
-                )}
-              </AnimatedSection>
-            )}
-
-            {/* Reflection */}
+            {/* Reflection / What I Learned */}
             {cs?.reflection && (
               <AnimatedSection delay={0.26} className="mb-12">
                 <h2 className="text-xl font-semibold text-[var(--color-fg)] tracking-tight mb-4">
-                  Reflection
+                  What I Learned & Reflection
                 </h2>
                 <blockquote className="border-l-2 border-[var(--color-accent)] pl-5">
                   <p className="text-[var(--color-muted)] text-base leading-relaxed italic">
@@ -390,7 +479,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
             <div className="sticky top-28 space-y-6">
               {/* Categories */}
               <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 shadow-[var(--shadow-soft)]">
-                <p className="cs-section-label mb-4">Categories</p>
+                <p className="cs-section-label mb-4">Focus Areas</p>
                 <div className="flex flex-wrap gap-2">
                   {project.categories.map((cat) => (
                     <span key={cat} className="skill-tag text-xs">
@@ -421,7 +510,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                 className="btn-secondary w-full justify-center text-sm"
                 aria-label="View all work"
               >
-                ← All Work
+                ← All Projects
               </Link>
             </div>
           </aside>

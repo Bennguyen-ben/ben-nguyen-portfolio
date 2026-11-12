@@ -7,9 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#work", label: "Work" },
+  { href: "#work", label: "Featured Work" },
+  { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
+  { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -42,7 +43,7 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled || !isHome
             ? "bg-white/95 backdrop-blur-md border-b border-[var(--color-border)] py-3 shadow-[0_1px_12px_0_rgba(0,0,0,0.06)]"
-            : "bg-transparent py-6"
+            : "bg-transparent py-5"
         }`}
       >
         <nav
@@ -52,7 +53,7 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-semibold text-[var(--color-fg)] tracking-tight text-sm hover:opacity-70 transition-opacity"
+            className="font-bold text-[var(--color-fg)] tracking-tight text-sm hover:opacity-75 transition-opacity"
             aria-label="Ben Nguyen — home"
           >
             BEN NGUYEN
@@ -66,7 +67,7 @@ export function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={targetHref}
-                    className="nav-link"
+                    className="nav-link text-xs font-semibold uppercase tracking-wider"
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.label}
@@ -80,12 +81,13 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a
               href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
-              className="btn-secondary text-sm py-2.5 px-5"
+              className="btn-secondary text-xs py-2 px-4"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Ben Nguyen's resume"
+              download
+              aria-label="Download Ben Nguyen's resume"
             >
-              View Resume
+              Resume (PDF)
             </a>
           </div>
 
@@ -127,8 +129,8 @@ export function Navbar() {
             aria-label="Mobile navigation menu"
             aria-modal="true"
           >
-            <div className="container-site py-6 flex items-center justify-between">
-              <span className="font-semibold text-sm tracking-tight">BEN NGUYEN</span>
+            <div className="container-site py-5 flex items-center justify-between border-b border-[var(--color-border)]">
+              <span className="font-bold text-sm tracking-tight">BEN NGUYEN</span>
               <button
                 onClick={() => setMenuOpen(false)}
                 className="p-2 rounded-lg hover:bg-[var(--color-surface)]"
@@ -146,13 +148,13 @@ export function Navbar() {
                 return (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: 24 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06, duration: 0.4 }}
+                    transition={{ delay: i * 0.05, duration: 0.3 }}
                   >
                     <Link
                       href={targetHref}
-                      className="block text-3xl font-semibold text-[var(--color-fg)] py-3 border-b border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors tracking-tight"
+                      className="block text-2xl font-semibold text-[var(--color-fg)] py-2.5 border-b border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors tracking-tight"
                       onClick={() => setMenuOpen(false)}
                     >
                       {link.label}
@@ -162,15 +164,16 @@ export function Navbar() {
               })}
             </nav>
 
-            <div className="container-site py-8">
+            <div className="container-site py-8 border-t border-[var(--color-border)]">
               <a
                 href="/documents/Ben-Nguyen-Digital-Marketing-Resume.pdf"
-                className="btn-primary w-full justify-center"
+                className="btn-primary w-full justify-center text-sm py-3"
                 target="_blank"
                 rel="noopener noreferrer"
+                download
                 onClick={() => setMenuOpen(false)}
               >
-                View Resume
+                Download Resume (PDF)
               </a>
             </div>
           </motion.div>
